@@ -1,0 +1,34 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorVioleta</item>
+        <item name="colorPrimaryDark">@color/colorNegro</item>
+        <item name="colorAccent">@color/colorNegro</item>
+    </style>
+
+    <style name="SlashScreen" parent="AppTheme.NoActionBar">
+        <item name="android:windowBackground">@drawable/slash_screen</item>
+    </style>
+
+    <style name="AppTheme.PopupTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <style name="ButtonVioletaTheme">
+        <item name="android:background">@drawable/buttonprincipalstyle</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ButtonGrisTheme">
+        <item name="background">@drawable/buttongrisstyle</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGris"
+        tools:context=".GraficosActivity">
+
+        <TextView
+            android:id="@+id/periodoTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/periodo"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonGraficar"
+            style="@style/ButtonVioletaTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="10dp"
+            android:onClick="graficar"
+            android:text="Graficar"
+            android:textColor="@drawable/text_button_violeta"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            app:layout_constraintBottom_toTopOf="@+id/flFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/fechaFinTV"
+            app:layout_constraintTop_toBottomOf="@+id/periodoTV"
+            app:layout_constraintVertical_bias="0.159" />
+
+        <TextView
+            android:id="@+id/fechaInicioTV"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="23dp"
+            android:text="@string/fechaDesde"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/buttonFechaInicio"
+            app:layout_constraintTop_toBottomOf="@+id/periodoTV" />
+
+        <Button
+            android:id="@+id/buttonFechaInicio"
+            android:layout_width="48dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_dkgris_style"
+            android:drawableStart="@mipmap/calendar"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@drawable/text_button_gris"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/periodoTV" />
+        <Button
+            android:id="@+id/buttonFechaFin"
+            android:layout_width="48dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_dkgris_style"
+            android:drawableStart="@mipmap/calendar"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@drawable/text_button_gris"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonFechaInicio" />
+
+        <TextView
+            android:id="@+id/fechaFinTV"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/fechaHasta"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/buttonFechaFin"
+            app:layout_constraintTop_toBottomOf="@+id/fechaInicioTV" />
+
+        <View
+            android:id="@+id/linea1"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonFechaFin" />
+
+        <FrameLayout
+            android:id="@+id/flFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="25dp"
+            android:paddingBottom="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/linea1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

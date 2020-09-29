@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "993240341699",
+    "firebase_url": "https://sala-multisensorial.firebaseio.com",
+    "project_id": "sala-multisensorial",
+    "storage_bucket": "sala-multisensorial.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993240341699:android:6289037c8538734e25d676",
+        "android_client_info": {
+          "package_name": "com.example.salamultisensorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993240341699-ea1n1ntnlit6ph1jr7t0pbariib65q1v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.salamultisensorial",
+            "certificate_hash": "7158a5263cf55260ca1ace36824f020bd7803809"
+          }
+        },
+        {
+          "client_id": "993240341699-56qv1tpapa56nethq0605ogna5d1qodh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC3gAn0NoA3jn4bfC7BnOaryIRM_07i_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993240341699-56qv1tpapa56nethq0605ogna5d1qodh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
