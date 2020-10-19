@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BotonSiguienteFragment">
+
+
+    <TextView
+        android:id="@+id/modoTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="40dp"
+        android:text="Modo de funcionamiento:"
+        android:textColor="@android:color/black"
+        android:textSize="19sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/simonCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="'Simón dice'"
+        android:textSize="17sp"
+        android:layout_marginHorizontal="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modoTV" />
+
+    <CheckBox
+        android:id="@+id/sonidosCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="'Sonido'"
+        android:textSize="17sp"
+        android:layout_marginHorizontal="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/simonCB" />
+
+    <TextView
+        android:id="@+id/accesorioTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="25dp"
+        android:text="Accesorio:"
+        android:textSize="19sp"
+        android:textStyle="italic"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sonidosCB" />
+
+    <CheckBox
+        android:id="@+id/colchonetaCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Colchoneta"
+        android:textSize="17sp"
+        android:layout_marginHorizontal="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accesorioTV" />
+
+    <CheckBox
+        android:id="@+id/tableroCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tablero"
+        android:textSize="17sp"
+        android:layout_marginHorizontal="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colchonetaCB" />
+
+    <Button
+        android:id="@+id/buttonOpciones"
+        style="@style/ButtonVioletaTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="35dp"
+        android:text="siguiente"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@drawable/text_button_violeta"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableroCB"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
