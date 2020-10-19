@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorVioleta"
-        android:padding="20dp"
         tools:context=".RegistrarActivity">
 
         <Button
             android:id="@+id/buttonTerapeuta"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginTop="180dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="140dp"
             android:background="@drawable/buttongrisstyle"
             android:padding="15dp"
             android:text="Profesional"
@@ -27,8 +27,9 @@
             android:textColor="@drawable/text_button_gris"
             android:textSize="35sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPaciente"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +37,9 @@
             android:id="@+id/buttonPaciente"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="140dp"
             android:background="@drawable/buttongrisstyle"
             android:text="Paciente"
             android:textAllCaps="false"
@@ -46,7 +49,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonTerapeuta"
             app:layout_constraintVertical_bias="0.231" />

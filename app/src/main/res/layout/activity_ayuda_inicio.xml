@@ -6,36 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AyudaInicioActivity"
-        android:padding="20dp">
+        android:background="@color/colorGris"
+        android:padding="20dp"
+        tools:context=".AyudaInicioActivity">
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="41dp"
             android:layout_height="39dp"
             android:src="@mipmap/informacion"
+            app:layout_constraintBottom_toTopOf="@+id/instruccionesTV"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/instruccionesTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Instructivo"
+            android:textColor="@android:color/black"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <TextView
             android:id="@+id/descripcionInicioTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="15dp"
-            android:text="Seleccione el profesional, el paciente y la herramienta que participarán de la sesión. \n\nSi su nombre no se encuentra en la lista dirijase a registrarse y vuelva a intentarlo."
+            android:layout_marginTop="5dp"
+            android:text="• Corrobore que su dispositivo se encuentra conectado a internet.  \n• Seleccione el profesional, el paciente y la herramienta que participarán de la sesión. \n\nSi su nombre no se encuentra en la lista dirijase a registrarse y vuelva a intentarlo."
             android:textColor="@color/colorNegro"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/instruccionesTV" />
 
         <TextView
             android:id="@+id/completarSesionTV"
@@ -56,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:text="Sección de la aplicación donde deberá completar información de los parámetros trabajados durante la sesión."
             android:textColor="@color/colorNegro"
             android:textSize="17sp"
@@ -83,13 +97,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:text="Sección de la aplicación donde podrá visualizar la evolución del paciente en un período de tiempo seleccionado. La misma se realiza en base a los datos completados en cada sesión."
             android:textColor="@color/colorNegro"
             android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/evolucionTV" />
+            app:layout_constraintTop_toBottomOf="@+id/evolucionTV"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

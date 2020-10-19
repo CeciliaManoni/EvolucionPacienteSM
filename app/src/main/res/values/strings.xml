@@ -14,7 +14,6 @@
     <string name="completar">Completar sesión</string>
     <string name="fechaDesde">Desde:</string>
     <string name="fechaHasta">Hasta:</string>
-    <string name="memoria">Parametro memoria</string>
     <string name="evolucionSesion">evolución paciente</string>
     <string name="graficos">Graficar Datos</string>
     <string name="nombrePaciente">Nombre Paciente</string>

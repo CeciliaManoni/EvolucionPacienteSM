@@ -88,102 +88,18 @@
             app:layout_constraintStart_toEndOf="@+id/buttonFechaSesion"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-
-        <TextView
-            android:id="@+id/modoTV"
+        <FrameLayout
+            android:id="@+id/flBotonSiguiente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="40dp"
-            android:text="Modo de funcionamiento:"
-            android:textColor="@android:color/black"
-            android:textSize="19sp"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fechaSesionTV" />
-
-        <CheckBox
-            android:id="@+id/simonCB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Modo simón dice"
-            android:textSize="17sp"
-            android:layout_marginHorizontal="35dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/modoTV" />
-
-        <CheckBox
-            android:id="@+id/sonidosCB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Modo sonido"
-            android:textSize="17sp"
-            android:layout_marginHorizontal="35dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/simonCB" />
-
-        <TextView
-            android:id="@+id/accesorioTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="25dp"
-            android:text="Accesorio:"
-            android:textSize="19sp"
-            android:textStyle="italic"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sonidosCB" />
-
-        <CheckBox
-            android:id="@+id/colchonetaCB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Colchoneta"
-            android:textSize="17sp"
-            android:layout_marginHorizontal="35dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accesorioTV" />
-
-        <CheckBox
-            android:id="@+id/tableroCB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tablero"
-            android:textSize="17sp"
-            android:layout_marginHorizontal="35dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/colchonetaCB" />
-
-        <Button
-            android:id="@+id/buttonOpciones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginHorizontal="30dp"
-            android:text="siguiente"
-            style="@style/ButtonVioletaTheme"
-            android:padding="0dp"
-            android:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@drawable/text_button_violeta"
-            android:textSize="19sp"
-            android:textStyle="bold"
-            android:onClick="opciones"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableroCB" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonFechaSesion" />
 
         <FrameLayout
             android:id="@+id/flMemoria"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/buttonOpciones"/>
+            app:layout_constraintTop_toBottomOf="@+id/flBotonSiguiente"/>
 
         <FrameLayout
             android:id="@+id/flEquilibrio"
@@ -203,25 +119,31 @@
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@+id/flAtencion"/>
 
-        <Button
-            android:id="@+id/cargarDatos"
+        <FrameLayout
+            android:id="@+id/flDiscColores"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/button_evaluacion"
-            android:enabled="false"
-            android:onClick="cargar"
-            android:text="Cargar datos"
-            android:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@android:color/black"
-            android:textSize="19sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/flMotricidadFina"/>
+
+        <FrameLayout
+            android:id="@+id/flIntegracionVisomotora"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/flDiscColores"/>
+
+        <FrameLayout
+            android:id="@+id/flObservaciones"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/flIntegracionVisomotora"/>
+
+        <FrameLayout
+            android:id="@+id/flBotonCargar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flMotricidadFina" />
+            app:layout_constraintTop_toBottomOf="@+id/flObservaciones" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -6,8 +6,15 @@
     <color name="colorNaranjaClaro">#FFA726</color>
     <color name="colorAzul">#1088D0</color>
     <color name="colorCeleste">#4F9ECD</color>
+    <color name="colorBlanco">#FFFFFF</color>
     <color name="colorGris">#D0D8E0</color>
     <color name="colorGris1">#E7E9EC</color>
     <color name="colorNegro">#484848</color>
-    <color name="colorBlanco">#FFFFFF</color>
+    <color name="colorAzul1">#204078</color>
+    <color name="colorAzul2">#0080C8</color>
+    <color name="colorAzul3">#02D6E4</color>
+    <color name="colorVerdeClarito">#98E088</color>
+    <color name="colorLila">#F090E0</color>
+    <color name="colorRosa">#B82870</color>
+
 </resources>

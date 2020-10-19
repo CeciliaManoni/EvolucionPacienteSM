@@ -11,6 +11,6 @@ class AyudaRegistroActivity : AppCompatActivity() {
         val alto = resources.displayMetrics.heightPixels
         val ancho = resources.displayMetrics.widthPixels
 
-        window.setLayout((ancho*0.8).toInt(), (alto*0.3).toInt())
+        window.setLayout((ancho*0.8).toInt(), (alto*0.4).toInt())
     }
 }

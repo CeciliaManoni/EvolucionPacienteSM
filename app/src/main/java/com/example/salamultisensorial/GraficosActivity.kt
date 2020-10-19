@@ -1,13 +1,17 @@
 package com.example.salamultisensorial
 
+import android.Manifest
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
@@ -20,7 +24,7 @@ class GraficosActivity : AppCompatActivity() {
     private lateinit var buttonFechaInicio: Button
     private lateinit var buttonFechaFin: Button
     private var pacienteDni:String? = ""
-    private var valorX: String? = ""
+    private var pacienteSeleccionado: String? = ""
 
     //Variables para selección de fecha
     private var fechaInicioG = ""
@@ -33,19 +37,20 @@ class GraficosActivity : AppCompatActivity() {
     private var anoFin = 0
 
     //Constantes para instanciar los fragments
-    private val lineaFragment = LineaFragment()
+    private val lineaFragment = GraficosFragment()
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graficos)
 
-        supportActionBar?.title = "Evolución Paciente"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        //Recuperar parámetros enviados desde AuthActivity con bundle
+        //Recuperar parámetros enviados desde Activity
         val bundle: Bundle? = intent.extras
         pacienteDni = bundle?.getString("pacienteDni")
-        valorX = bundle?.getString("valor_x")
+        pacienteSeleccionado = bundle?.getString("paciente")
+
+        supportActionBar?.title = "Evolución $pacienteSeleccionado"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //Instanciar variable con su id del layout
         buttonFechaInicio=findViewById(R.id.buttonFechaInicio)
@@ -54,6 +59,16 @@ class GraficosActivity : AppCompatActivity() {
         fechaFinTV=findViewById(R.id.fechaFinTV)
 
         seleccionFecha()
+        permisoAlmacenamiento()
+    }
+
+    //Dar permiso para almacenamiento externo
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun permisoAlmacenamiento(){
+        if (checkSelfPermission(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+        }
     }
 
     //Agregar botón ayuda en ActionBar
@@ -73,7 +88,7 @@ class GraficosActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    //Función para seleccionar la fecha de inicio y fin de evaluación del paciente
+    //Función para seleccionar la fecha de inicio y fin de evolución del paciente
     private fun seleccionFecha() {
         val c = Calendar.getInstance()
         val ano = c.get(Calendar.YEAR)
@@ -133,19 +148,19 @@ class GraficosActivity : AppCompatActivity() {
     }
 
     fun graficar(view: View) {
-        //Crear un bundle para poder enviar todos los datos con putString
+        //Crear un bundle para poder enviar datos
         val bundle = Bundle()
         bundle.putString("pacienteDni", pacienteDni)
         bundle.putString("fechaInicio", fechaInicioG)
         bundle.putString("fechaFin", fechaFinG)
 
+        // Corroborar que hay un período de tiempo seleccionado
         if (fechaFinG == "" || fechaInicioG == ""){
             mensajeAlerta("Seleccione el período de evolución a graficar")
         }else {
-            //Hacer el grafico de línea
-            //Pasar los datos del bundle al FragmentSecond()
+            //Pasar los datos del bundle al Fragment de los gráficos ()
             lineaFragment.arguments = bundle
-            //Cambiar fragment actual por FragmentSecond()
+            //Cambiar fragment actual por LineaFragment()
             supportFragmentManager.beginTransaction().apply {
                 remove(lineaFragment)
                 replace(R.id.flFragment, lineaFragment)

@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        tools:context=".AyudaPanelActivity">
+        tools:context=".AyudaPanelActivity"
+        android:background="@color/colorGris">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -25,18 +26,44 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/modosTV"
+            android:id="@+id/instruccionesTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
             android:layout_marginTop="20dp"
-            android:text="Modos de funcionamiento"
+            android:text="Instructivo"
             android:textColor="@android:color/black"
             android:textSize="21sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/instrucciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="10dp"
+            android:text="• Verificar que el profesional y el paciente sean los correctos.\n• Seleccionar la fecha de la sesión que desee registar.\n• Marcar una o más opciones de acuerdo a la configuración de uso del Panel Interactivo.\n• Presionar el botón 'SIGUIENTE' y completar el cuestionario.\n• Presionar el botón 'CARGAR DATOS' para que se almacenen correctamente."
+            android:textColor="@color/colorNegro"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instruccionesTV"/>
+
+        <TextView
+            android:id="@+id/modosTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="35dp"
+            android:text="Modos de funcionamiento"
+            android:textColor="@android:color/black"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instrucciones" />
 
         <TextView
             android:id="@+id/simonTV"
@@ -57,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginHorizontal="10dp"
-            android:text="Muestra una secuencia de colores \nque el usuario debe recordar para \nluego reproducirla."
+            android:text="Muestra una secuencia de colores que el usuario debe recordar para luego reproducirla."
             android:textColor="@color/colorNegro"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
