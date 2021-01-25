@@ -18,7 +18,7 @@
     </style>
 
     <style name="ButtonVioletaTheme">
-        <item name="android:background">@drawable/buttonprincipalstyle</item>
+        <item name="android:background">@drawable/boton_violeta</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -27,8 +27,12 @@
     </style>
 
     <style name="ButtonGrisTheme">
-        <item name="background">@drawable/buttongrisstyle</item>
+        <item name="background">@drawable/boton_registrarse</item>
     </style>
 
+    <style name="Toast">
+        <item name="background">@drawable/boton_evolucion</item>
+        <item name="android:strokeColor">@color/colorNegro</item>
+    </style>
 
 </resources>

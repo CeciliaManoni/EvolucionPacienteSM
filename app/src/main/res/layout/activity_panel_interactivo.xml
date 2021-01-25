@@ -69,7 +69,7 @@
             android:layout_height="41dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/button_dkgris_style"
+            android:background="@drawable/boton_calendario"
             android:drawableStart="@mipmap/calendar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="32dp"
-            android:text="@string/fechaSesion"
+            android:text="Fecha de la sesión:"
             android:textColor="#000000"
             android:textSize="19sp"
             app:layout_constraintEnd_toEndOf="parent"

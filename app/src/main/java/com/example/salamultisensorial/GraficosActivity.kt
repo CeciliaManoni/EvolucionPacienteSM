@@ -10,10 +10,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_graficos.*
 import java.util.*
 
 
@@ -25,6 +27,7 @@ class GraficosActivity : AppCompatActivity() {
     private lateinit var buttonFechaFin: Button
     private var pacienteDni:String? = ""
     private var pacienteSeleccionado: String? = ""
+    private var herramientaSeleccionada: String? = ""
 
     //Variables para selección de fecha
     private var fechaInicioG = ""
@@ -37,7 +40,10 @@ class GraficosActivity : AppCompatActivity() {
     private var anoFin = 0
 
     //Constantes para instanciar los fragments
-    private val lineaFragment = GraficosFragment()
+    private val graficosPanelFragment = GraficosPanelFragment()
+    private val graficosParedFragment = GraficosParedFragment()
+    private lateinit var flPanelFragment : FrameLayout
+    private lateinit var flParedFragment : FrameLayout
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +54,7 @@ class GraficosActivity : AppCompatActivity() {
         val bundle: Bundle? = intent.extras
         pacienteDni = bundle?.getString("pacienteDni")
         pacienteSeleccionado = bundle?.getString("paciente")
+        herramientaSeleccionada = bundle?.getString("herramientaSeleccionada")
 
         supportActionBar?.title = "Evolución $pacienteSeleccionado"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -57,7 +64,15 @@ class GraficosActivity : AppCompatActivity() {
         buttonFechaFin=findViewById(R.id.buttonFechaFin)
         fechaInicioTV=findViewById(R.id.fechaInicioTV)
         fechaFinTV=findViewById(R.id.fechaFinTV)
+        flPanelFragment = findViewById(R.id.flPanelFragment)
+        flParedFragment = findViewById(R.id.flParedFragment)
 
+        if (herramientaSeleccionada == "Panel Interactivo"){
+            herramientaTV.text = "Panel Interactivo"
+        }
+        if (herramientaSeleccionada == "Pared de Seguimiento Visual"){
+            herramientaTV.text = "Pared de Seguimiento Visual"
+        }
         seleccionFecha()
         permisoAlmacenamiento()
     }
@@ -148,6 +163,7 @@ class GraficosActivity : AppCompatActivity() {
     }
 
     fun graficar(view: View) {
+
         //Crear un bundle para poder enviar datos
         val bundle = Bundle()
         bundle.putString("pacienteDni", pacienteDni)
@@ -158,15 +174,29 @@ class GraficosActivity : AppCompatActivity() {
         if (fechaFinG == "" || fechaInicioG == ""){
             mensajeAlerta("Seleccione el período de evolución a graficar")
         }else {
-            //Pasar los datos del bundle al Fragment de los gráficos ()
-            lineaFragment.arguments = bundle
-            //Cambiar fragment actual por LineaFragment()
-            supportFragmentManager.beginTransaction().apply {
-                remove(lineaFragment)
-                replace(R.id.flFragment, lineaFragment)
-                //Añadir a la cola de tareas para que cuando aprete atras no cierre la app
-                addToBackStack(null)
-                commit()
+            if (herramientaSeleccionada == "Panel Interactivo") {
+                //Pasar los datos del bundle al Fragment de los gráficos ()
+                graficosPanelFragment.arguments = bundle
+                //Cambiar fragment actual por LineaFragment()
+                supportFragmentManager.beginTransaction().apply {
+                    remove(graficosPanelFragment)
+                    replace(R.id.flPanelFragment, graficosPanelFragment)
+                    //Añadir a la cola de tareas para que cuando aprete atras no cierre la app
+                    addToBackStack(null)
+                    commit()
+                }
+            }
+            if (herramientaSeleccionada == "Pared de Seguimiento Visual") {
+                //Pasar los datos del bundle al Fragment de los gráficos ()
+                graficosParedFragment.arguments = bundle
+                //Cambiar fragment actual por LineaFragment()
+                supportFragmentManager.beginTransaction().apply {
+                    remove(graficosParedFragment)
+                    replace(R.id.flParedFragment, graficosParedFragment)
+                    //Añadir a la cola de tareas para que cuando aprete atras no cierre la app
+                    addToBackStack(null)
+                    commit()
+                }
             }
         }
     }

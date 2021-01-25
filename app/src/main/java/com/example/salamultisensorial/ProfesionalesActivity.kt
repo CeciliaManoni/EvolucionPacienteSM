@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_principal.*
 
 class ProfesionalesActivity : AppCompatActivity() {
 
@@ -95,12 +96,6 @@ class ProfesionalesActivity : AppCompatActivity() {
                 ) as TextView
                 view.typeface = view.typeface
 
-                // Estilo del item seleccionado
-                if (position == spinner.selectedItemPosition && position != 0 ){
-                    view.background = ColorDrawable(Color.parseColor("#646567"))
-                    view.setTextColor(Color.WHITE)
-                }
-
                 // Color gris para "Seleccione su profesión"
                 if(position == 0 ){
                     view.setTextColor(Color.LTGRAY)
@@ -149,9 +144,13 @@ class ProfesionalesActivity : AppCompatActivity() {
        if(nombre.isNotEmpty() && dni.isNotEmpty()){
            //Cargar los datos del profesional en la base de datos
            dbReference.child(profesionSeleccionada).child(dni).child("Nombre").setValue(nombre)
-           Toast.makeText(this, "Datos cargados correctamente", Toast.LENGTH_LONG).show()
+           Toast.makeText(this, "Usuario registrado como $nombre cuyo DNI es $dni y trabaja en el área de $profesionSeleccionada", Toast.LENGTH_LONG).show()
+           val inicioIntent = Intent(this, PrincipalActivity::class.java)
+           startActivity(inicioIntent)
        }else{
            Toast.makeText(this,"Complete todos los campos", Toast.LENGTH_LONG).show()
        }
+
+
     }
 }

@@ -25,6 +25,32 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/instruccionesGraficosTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Instructivo"
+                    android:textColor="@android:color/black"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+                <TextView
+                    android:id="@+id/descripcionGraficosTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="5dp"
+                    android:text="• Verificar que el paciente sea el correcto.  \n• Seleccionar el período de tiempo que desee. \n• Presionar el botón 'GRAFICAR'. \n• Marcar los parámetros que desee comparar en el gráfico de línea integral. \n• Seleccionar la fecha correspondiente a la observacion. \n• Presionar el botón descargar, ubicado en la esquina superior derecha de cada gráfico, para almacenarlo en su dispositivo."
+                    android:textColor="@color/colorNegro"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/instruccionesGraficosTV" />
+
+                <TextView
                     android:id="@+id/graficoRadialTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -36,7 +62,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/descripcionGraficosTV" />
 
                 <TextView
                     android:id="@+id/descripcionGraficoRadialTV"
@@ -140,7 +166,7 @@
                     android:layout_marginHorizontal="50dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
-                    android:text="Permite observar una comparación de todos los parámetros evaluados en el período seleccionado."
+                    android:text="Permite observar una comparación de los parámetros evaluados en el período seleccionado."
                     android:textColor="@color/colorNegro"
                     android:textSize="17sp"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorGris"
-        tools:context=".GraficosFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".GraficosParedFragment"
+    android:background="@color/colorGris">
 
         <TextView
             android:id="@+id/evolucionIntTV"
@@ -64,7 +58,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/colorGris"
+            android:background="@drawable/boton_descargar"
             android:drawableStart="@mipmap/descargarlinea"
             android:stateListAnimator="@null"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,8 +69,8 @@
         <com.github.mikephil.charting.charts.RadarChart
             android:id="@+id/radarChart"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:layout_marginTop="35dp"
+            android:layout_height="330dp"
+            android:layout_marginTop="75dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radialTV" />
@@ -86,7 +80,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="45dp"
-            android:layout_marginTop="15dp"
             android:text="Referencias"
             android:textColor="@color/colorNegro"
             android:textSize="16sp"
@@ -100,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="45dp"
-            android:text="M: Memoria\nE: Equilibrio\nA: Atención\nMF: Motricidad Fina\nDC: Discriminación de Colores\nIVM: Integración Viso-Motora"
+            android:text="E: Equilibrio\nA: Atención\nIVM: Integración Viso-Motora"
             android:textColor="@color/colorNegro"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +123,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="33dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/colorGris"
+            android:background="@drawable/boton_descargar"
             android:drawableStart="@mipmap/descargarlinea"
             android:stateListAnimator="@null"
             app:layout_constraintEnd_toEndOf="parent"
@@ -152,14 +145,15 @@
             app:layout_constraintTop_toBottomOf="@+id/lIntegralTV" />
 
         <CheckBox
-            android:id="@+id/memoriaCB"
+            android:id="@+id/visomotoraCB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
-            android:layout_marginStart="20dp"
-            android:text="Memoria"
-            android:textSize="16sp"
+            android:layout_marginStart="105dp"
+            android:text="Integración Viso-Motora"
             android:textColor="@color/colorNegro"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descripcionlineaTV" />
 
@@ -167,74 +161,27 @@
             android:id="@+id/equilibrioCB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="105dp"
             android:text="Equilibrio"
+            android:textColor="@color/colorNegro"
             android:textSize="16sp"
-            android:textColor="@color/colorNegro"            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/memoriaCB" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/visomotoraCB" />
 
         <CheckBox
             android:id="@+id/atencionCB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="105dp"
             android:text="Atencion"
+            android:textColor="@color/colorNegro"
             android:textSize="16sp"
-            android:textColor="@color/colorNegro"            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/equilibrioCB" />
-
-        <CheckBox
-            android:id="@+id/motricidadFinaCB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="88dp"
-            android:text="Motricidad Fina"
-            android:textSize="16sp"
-            android:textColor="@color/colorNegro"            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/memoriaCB"
-            app:layout_constraintTop_toBottomOf="@+id/descripcionlineaTV" />
-
-        <CheckBox
-            android:id="@+id/discriminacionCB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:text="Discriminación de Colores"
-            android:textSize="16sp"
-            android:textColor="@color/colorNegro"            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/equilibrioCB"
-            app:layout_constraintTop_toBottomOf="@+id/motricidadFinaCB" />
-
-        <CheckBox
-            android:id="@+id/visomotoraCB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="23dp"
-            android:text="Integración Viso-Motora"
-            android:textSize="16sp"
-            android:textColor="@color/colorNegro"            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/atencionCB"
-            app:layout_constraintTop_toBottomOf="@+id/discriminacionCB" />
-
-        <Button
-            android:id="@+id/botonGraficarLinea"
-            style="@style/ButtonVioletaTheme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginHorizontal="50dp"
-            android:text="Graficar"
-            android:textColor="@drawable/text_button_violeta"
-            android:textStyle="bold"
-            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/atencionCB" />
+            app:layout_constraintTop_toBottomOf="@+id/equilibrioCB" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
@@ -245,14 +192,13 @@
             android:paddingBottom="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/botonGraficarLinea" />
+            app:layout_constraintTop_toBottomOf="@+id/atencionCB" />
 
         <TextView
             android:id="@+id/descripcionObservacionesTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:paddingHorizontal="30dp"
             android:text="¿Desea ver la observación de alguna sesión?"
             android:textAlignment="center"
             android:textColor="@color/colorNegro"
@@ -264,38 +210,26 @@
             android:id="@+id/spinnerObservaciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="25dp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1439dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descripcionObservacionesTV"/>
-
-        <Button
-            android:id="@+id/botonObservaciones"
-            android:layout_width="43dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="11dp"
-            android:background="@color/colorGris"
-            android:drawableStart="@mipmap/listo"
-            android:stateListAnimator="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/spinnerObservaciones"
-            app:layout_constraintTop_toBottomOf="@+id/descripcionObservacionesTV" />
 
         <TextView
             android:id="@+id/observacionesTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:paddingHorizontal="30dp"
-            android:text="No hay datos para mostrar"
+            android:layout_marginHorizontal="25dp"
+            android:padding="10dp"
             android:textAlignment="center"
             android:textColor="@color/colorNegro"
             android:textSize="16sp"
+            android:background="@drawable/observaciones"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/botonObservaciones" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerObservaciones" />
 
         <View
             android:id="@+id/linea1"
@@ -323,49 +257,6 @@
             app:layout_constraintTop_toTopOf="@id/linea1" />
 
         <TextView
-            android:id="@+id/pMemoriaTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="70dp"
-            android:background="@color/colorGris1"
-            android:fontFamily="@font/chubbyrubby"
-            android:paddingTop="8dp"
-            android:text="Memoria"
-            android:textAlignment="center"
-            android:textColor="@color/colorAzul1"
-            android:textSize="27sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/evolucionParamTV" />
-
-        <Button
-            android:id="@+id/buttonDescargarM"
-            android:layout_width="45dp"
-            android:layout_height="43.5dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="25dp"
-            android:background="@color/colorGris1"
-            android:drawableStart="@mipmap/descargarm"
-            android:stateListAnimator="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/pMemoriaTV"
-            app:layout_constraintTop_toBottomOf="@+id/evolucionParamTV"
-            tools:layout_editor_absoluteY="1392dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lineChartMemoria"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:layout_marginHorizontal="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pMemoriaTV" />
-
-        <TextView
             android:id="@+id/pEquilibrioTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -382,7 +273,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lineChartMemoria" />
+            app:layout_constraintTop_toBottomOf="@+id/evolucionParamTV" />
 
         <Button
             android:id="@+id/buttonDescargarE"
@@ -390,13 +281,13 @@
             android:layout_height="43.5dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/colorGris1"
+            android:background="@drawable/boton_descargar2"
             android:drawableStart="@mipmap/descargare"
             android:stateListAnimator="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/pEquilibrioTV"
-            app:layout_constraintTop_toBottomOf="@+id/lineChartMemoria"
+            app:layout_constraintTop_toBottomOf="@+id/evolucionParamTV"
             tools:layout_editor_absoluteY="1392dp" />
 
         <com.github.mikephil.charting.charts.LineChart
@@ -433,7 +324,7 @@
             android:layout_height="43.5dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/colorGris1"
+            android:background="@drawable/boton_descargar2"
             android:drawableStart="@mipmap/descargara"
             android:stateListAnimator="@null"
             app:layout_constraintEnd_toEndOf="parent"
@@ -452,92 +343,6 @@
             app:layout_constraintTop_toBottomOf="@+id/pAtencionTV" />
 
         <TextView
-            android:id="@+id/pMFinaTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="70dp"
-            android:background="@color/colorGris1"
-            android:fontFamily="@font/chubbyrubby"
-            android:paddingTop="8dp"
-            android:text="Motricidad Fina"
-            android:textAlignment="center"
-            android:textColor="@color/colorVerdeClarito"
-            android:textSize="27sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lineChartAtencion" />
-
-        <Button
-            android:id="@+id/buttonDescargarMF"
-            android:layout_width="45dp"
-            android:layout_height="43.5dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="25dp"
-            android:background="@color/colorGris1"
-            android:drawableStart="@mipmap/descargarmf"
-            android:stateListAnimator="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/pMFinaTV"
-            app:layout_constraintTop_toBottomOf="@+id/lineChartAtencion"
-            tools:layout_editor_absoluteY="1392dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lineChartMFina"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:layout_marginHorizontal="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pMFinaTV" />
-
-        <TextView
-            android:id="@+id/pColoresTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="70dp"
-            android:background="@color/colorGris1"
-            android:fontFamily="@font/chubbyrubby"
-            android:paddingTop="8dp"
-            android:text="Discriminación de colores"
-            android:textAlignment="center"
-            android:textColor="@color/colorLila"
-            android:textSize="27sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lineChartMFina" />
-
-        <Button
-            android:id="@+id/buttonDescargarColores"
-            android:layout_width="45dp"
-            android:layout_height="43.5dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="25dp"
-            android:background="@color/colorGris1"
-            android:drawableStart="@mipmap/descargarc"
-            android:stateListAnimator="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/pColoresTV"
-            app:layout_constraintTop_toBottomOf="@+id/lineChartMFina"
-            tools:layout_editor_absoluteY="1392dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lineChartColores"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:layout_marginHorizontal="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pColoresTV" />
-
-        <TextView
             android:id="@+id/pVisomotoraTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -554,7 +359,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lineChartColores" />
+            app:layout_constraintTop_toBottomOf="@+id/lineChartAtencion" />
 
         <Button
             android:id="@+id/buttonDescargarV"
@@ -562,13 +367,13 @@
             android:layout_height="43.5dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/colorGris1"
+            android:background="@drawable/boton_descargar2"
             android:drawableStart="@mipmap/descargarv"
             android:stateListAnimator="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/pVisomotoraTV"
-            app:layout_constraintTop_toBottomOf="@+id/lineChartColores"
+            app:layout_constraintTop_toBottomOf="@+id/lineChartAtencion"
             tools:layout_editor_absoluteY="1392dp" />
 
         <com.github.mikephil.charting.charts.LineChart
@@ -581,5 +386,5 @@
             app:layout_constraintTop_toBottomOf="@+id/pVisomotoraTV" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

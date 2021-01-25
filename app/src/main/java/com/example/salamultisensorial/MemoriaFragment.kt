@@ -61,37 +61,42 @@ class MemoriaFragment : Fragment() {
 
    fun memoria() {
        dbReference = FirebaseDatabase.getInstance().reference.child("Pacientes")
-           .child(pacienteDni.toString()).child("Memoria")
+           .child(pacienteDni.toString()).child("Memoria Panel")
 
        radioGroupMemoria.setOnCheckedChangeListener { radioGroup, checkedId ->
            when (checkedId) {
                R.id.memoriaOpcion1 -> {
                    dbReference.child(fechaSesion.toString()).child("y").setValue(0)
                    dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                   dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                    completoM = true
                    comunicador.completeMe(completoM)
                }
                R.id.memoriaOpcion2 ->{
                    dbReference.child(fechaSesion.toString()).child("y").setValue(1)
                    dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                   dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                    completoM = true
                    comunicador.completeMe(completoM)
                }
                R.id.memoriaOpcion3 ->{
                    dbReference.child(fechaSesion.toString()).child("y").setValue(2)
                    dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                   dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                    completoM = true
                    comunicador.completeMe(completoM)
                }
                R.id.memoriaOpcion4 ->{
                    dbReference.child(fechaSesion.toString()).child("y").setValue(3)
                    dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                   dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                    completoM = true
                    comunicador.completeMe(completoM)
                }
                R.id.memoriaOpcion5 ->{
                    dbReference.child(fechaSesion.toString()).child("y").setValue(4)
                    dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                   dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                    completoM = true
                    comunicador.completeMe(completoM)
                }
@@ -109,15 +114,27 @@ class MemoriaFragment : Fragment() {
                        var i = 0f
                        valoresGuardadas.clear() //Limpiar datos anteriores
                        for (ds in snapshot.children) {
-                           if (ds.key!! <= fechaSesion.toString()) {
+                           if (ds.key!! < fechaSesion.toString()) {
                                val valor = ds.child("y").value.toString()
                                valoresGuardadas.add(valor)
                                i += 1
                            }
                        }
-                       dbReference.child(fechaSesion.toString()).child("y").setValue(valoresGuardadas[i.toInt()-1])
-                       dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
                        seleccionMemoria = "false"
+                       if (valoresGuardadas.isNotEmpty()) {
+                           dbReference.child(fechaSesion.toString()).child("y")
+                               .setValue(valoresGuardadas[i.toInt() - 1])
+                           dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                           dbReference.child(fechaSesion.toString()).child("real").setValue("false")
+                       }else{
+                           dbReference.child(fechaSesion.toString()).child("y").setValue(0)
+                           dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                           dbReference.child(fechaSesion.toString()).child("real").setValue("false")
+                       }
+                   }else{
+                       dbReference.child(fechaSesion.toString()).child("y").setValue(0)
+                       dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                       dbReference.child(fechaSesion.toString()).child("real").setValue("false")
                    }
                }
            }) }

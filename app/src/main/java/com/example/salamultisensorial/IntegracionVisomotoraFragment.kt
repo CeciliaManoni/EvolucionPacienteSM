@@ -56,7 +56,7 @@ class IntegracionVisomotoraFragment : Fragment() {
 
     fun visomotora() {
         dbReference = FirebaseDatabase.getInstance().reference.child("Pacientes")
-            .child(pacienteDni.toString()).child("Visomotora")
+            .child(pacienteDni.toString()).child("Visomotora Panel")
             .child(fechaSesion.toString())
 
         radioGroupVisomotora.setOnCheckedChangeListener { radioGroup, checkedId ->

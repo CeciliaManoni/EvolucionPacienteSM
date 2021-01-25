@@ -61,7 +61,7 @@ class MotricidadFinaFragment : Fragment() {
 
     fun motricidadFina() {
         dbReference = FirebaseDatabase.getInstance().reference.child("Pacientes")
-            .child(pacienteDni.toString()).child("Motricidad Fina")
+            .child(pacienteDni.toString()).child("Motricidad Fina Panel")
             .child(fechaSesion.toString())
 
         radioGroupMotricidadFina.setOnCheckedChangeListener { radioGroup, checkedId ->
@@ -70,18 +70,21 @@ class MotricidadFinaFragment : Fragment() {
                 R.id.motricidadFinaOpcion1 ->{
                     dbReference.child("y").setValue(0)
                     dbReference.child("x").setValue(valorX)
+                    dbReference.child("real").setValue("true")
                     completoMF = true
                     comunicador.completeMFi(completoMF)
                 }
                 R.id.motricidadFinaOpcion2 ->{
                     dbReference.child("y").setValue(1)
                     dbReference.child("x").setValue(valorX)
+                    dbReference.child("real").setValue("true")
                     completoMF = true
                     comunicador.completeMFi(completoMF)
                 }
                 R.id.motricidadFinaOpcion3 ->{
                     dbReference.child("y").setValue(2)
                     dbReference.child("x").setValue(valorX)
+                    dbReference.child("real").setValue("true")
                     completoMF = true
                     comunicador.completeMFi(completoMF)
 
@@ -89,19 +92,21 @@ class MotricidadFinaFragment : Fragment() {
                 R.id.motricidadFinaOpcion4 -> {
                     dbReference.child("y").setValue(3)
                     dbReference.child("x").setValue(valorX)
+                    dbReference.child("real").setValue("true")
                     completoMF = true
                     comunicador.completeMFi(completoMF)
                 }
                 R.id.motricidadFinaOpcion5 -> {
                     dbReference.child("y").setValue(4)
                     dbReference.child("x").setValue(valorX)
+                    dbReference.child("real").setValue("true")
                     completoMF = true
                     comunicador.completeMFi(completoMF)
                 }
             }
         }
         dbReference2= FirebaseDatabase.getInstance().reference.child("Pacientes")
-            .child(pacienteDni.toString()).child("Motricidad Fina")
+            .child(pacienteDni.toString()).child("Motricidad Fina Panel")
 
         if(seleccionMotricidadFina?.toBoolean()!!){
             dbReference2.addValueEventListener(object : ValueEventListener {
@@ -114,15 +119,27 @@ class MotricidadFinaFragment : Fragment() {
                         var i = 0f
                         valoresGuardadas.clear() //Limpiar datos anteriores
                         for (ds in snapshot.children) {
-                            if (ds.key!! <= fechaSesion.toString()) {
+                            if (ds.key!! < fechaSesion.toString()) {
                                 val valor = ds.child("y").value.toString()
                                 valoresGuardadas.add(valor)
                                 i += 1
                             }
                         }
-                        dbReference.child("y").setValue(valoresGuardadas[i.toInt()-1])
-                        dbReference.child("x").setValue(valorX)
                         seleccionMotricidadFina = "false"
+                        if (valoresGuardadas.isNotEmpty()) {
+                            dbReference2.child(fechaSesion.toString()).child("y")
+                                .setValue(valoresGuardadas[i.toInt() - 1])
+                            dbReference2.child(fechaSesion.toString()).child("x").setValue(valorX)
+                            dbReference2.child(fechaSesion.toString()).child("real").setValue("false")
+                        }else{
+                            dbReference2.child(fechaSesion.toString()).child("y").setValue(0)
+                            dbReference2.child(fechaSesion.toString()).child("x").setValue(valorX)
+                            dbReference2.child(fechaSesion.toString()).child("real").setValue("false")
+                        }
+                    }else{
+                        dbReference2.child(fechaSesion.toString()).child("y").setValue(0)
+                        dbReference2.child(fechaSesion.toString()).child("x").setValue(valorX)
+                        dbReference2.child(fechaSesion.toString()).child("real").setValue("false")
                     }
                 }
             })

@@ -1,24 +1,6 @@
 <resources>
     <string name="app_name">Sala Multisensorial</string>
-    <string name="nombre">Nombre Completo</string>
-    <string name="fecha">Fecha de Nacimiento</string>
-    <string name="fechaSesion">Fecha de la sesión:</string>
-    <string name="diagnostico">Diagnóstico por CUD</string>
-    <string name="profesion">Profesión</string>
-    <string name="dni">DNI</string>
-    <string name="completePaciente">Complete los datos del paciente</string>
-    <string name="completeTerapeuta">Complete sus datos personales</string>
-    <string name="completeSesion">Seleccione los datos de la sesión</string>
     <string name="cargar">Cargar Datos</string>
-    <string name="periodo">Observar período de evolución</string>
-    <string name="completar">Completar sesión</string>
-    <string name="fechaDesde">Desde:</string>
-    <string name="fechaHasta">Hasta:</string>
-    <string name="evolucionSesion">evolución paciente</string>
-    <string name="graficos">Graficar Datos</string>
-    <string name="nombrePaciente">Nombre Paciente</string>
-    <string name="nombreProfesional">Nombre Profesional</string>
-    <string name="herramienta">Herramienta</string>
     <string-array name="herramientas">
         <item>Panel Interactivo</item>
         <item>Pared de Seguimiento Visual</item>

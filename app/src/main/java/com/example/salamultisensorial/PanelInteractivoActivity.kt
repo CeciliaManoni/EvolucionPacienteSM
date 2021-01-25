@@ -12,11 +12,14 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_panel_interactivo.*
 import java.util.*
 
 class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
+
+    private lateinit var dbReference: DatabaseReference
 
     // Instanciamiento de vistas del layout
     private lateinit var flMemoria : FrameLayout
@@ -27,10 +30,18 @@ class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
     private lateinit var flBotonCargar : FrameLayout
     private lateinit var flDiscColores : FrameLayout
     private lateinit var flIntegracionVisomotora : FrameLayout
-    private lateinit var radioGroupEquilibrio:RadioGroup
+
+    // Instanciamiento de fragments
+    val memoriaFragment = MemoriaFragment()
+    val equilibrioFragment = EquilibrioFragment()
+    val atencionFragment = AtencionFragment()
+    val motricidadFinaFragment = MotricidadFinaFragment()
+    val discColoresFragment = DiscriminacionColoresFragment()
+    val integracionVisomotoraFragment = IntegracionVisomotoraFragment()
+    val botonSiguienteFragment = BotonSiguienteFragment()
+    val botonCargarFragment = BotonCargarFragment()
 
     //Declaración variables globales
-
     private var seleccionEquilibrio = false
     private var seleccionMotricidad = false
     private var seleccionMemoria = false
@@ -45,6 +56,7 @@ class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
     private var profesional: String? = ""
     private var fechaSesion: String? = ""
     private var valorX: String? = ""
+    private var fechaCompleta: String? = ""
     private var desmarcar: Boolean = false
     private var anoG = 0
     private var mesG = 0
@@ -55,16 +67,9 @@ class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
     private var completoMF = false
     private var completoM = false
     private var completoDC = false
+    private var observacion = ""
 
-    // Instanciamiento de fragments
-    val memoriaFragment = MemoriaFragment()
-    val equilibrioFragment = EquilibrioFragment()
-    val atencionFragment = AtencionFragment()
-    val motricidadFinaFragment = MotricidadFinaFragment()
-    val discColoresFragment = DiscriminacionColoresFragment()
-    val integracionVisomotoraFragment = IntegracionVisomotoraFragment()
-    val botonSiguienteFragment = BotonSiguienteFragment()
-    val botonCargarFragment = BotonCargarFragment()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -147,6 +152,7 @@ class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
                 }
                 fechaSesion = "$anoG$mesBD$diaBD"
                 valorX = "$diaG/$mesG"
+                fechaCompleta = "$diaG/$mesG/$anoG"
             }, ano, mes, dia)
             dpd.show()
             
@@ -159,7 +165,10 @@ class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
         sonidos = sonidosP
         colchoneta = colchonetaP
         tablero = tableroP
+    }
 
+    override fun pasarDatosEt(observaciones: String) {
+        observacion = observaciones
     }
 
     override fun completeEq(completoEq: Boolean) {
@@ -214,32 +223,19 @@ class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
 
                     // Habilitar el botón cargar datos
                     flBotonSiguiente.removeAllViews()
-                    supportFragmentManager.beginTransaction().remove(botonCargarFragment)
-                        .replace(R.id.flBotonCargar, botonCargarFragment)
-                        .addToBackStack(null).commit()
-                    habilitarSig = false
+                    botonCargar()
 
                     // Desplegar los fragments adecuados según la configuración de uso
                     if (sonidos) {
                         atencion()
                         discColores()
                         visomotora()
-                        seleccionMemoria = true
-                        memoria(seleccionMemoria)
                         if(colchoneta){
                             seleccionEquilibrio = false
                             equilibrio(seleccionEquilibrio)
                         }
-                        else{
-                            seleccionEquilibrio = true
-                            equilibrio(seleccionEquilibrio)
-                        }
                         if (tablero) {
                             seleccionMotricidad = false
-                            motricidadFina(seleccionMotricidad)
-                        }
-                        else{
-                            seleccionMotricidad = true
                             motricidadFina(seleccionMotricidad)
                         }
                     }
@@ -253,16 +249,8 @@ class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
                             seleccionEquilibrio = false
                             equilibrio(seleccionEquilibrio)
                         }
-                        else{
-                            seleccionEquilibrio = true
-                            equilibrio(seleccionEquilibrio)
-                        }
                         if (tablero) {
                             seleccionMotricidad = false
-                            motricidadFina(seleccionMotricidad)
-                        }
-                        else{
-                            seleccionMotricidad = true
                             motricidadFina(seleccionMotricidad)
                         }
                     }
@@ -276,21 +264,35 @@ class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
         // Ejecutar cuando se presiona el botón cargar datos
         if(habilitarCar){
 
-            if (sonidos){
+            if (sonidos && !simon){
                 completoM = true
+                seleccionMemoria = true   //Al seleccionar sonidos, se debe cargar por defecto memoria en la base de datos
+                memoria(seleccionMemoria)
                 if (colchoneta){
                     completoMF = true
+                }else{
+                    seleccionEquilibrio = true  //Al no seleccionar colchoneta, se debe cargar por defecto equilibrio en la base de datos
+                    equilibrio(seleccionEquilibrio)
                 }
                 if (tablero){
                     completoE = true
+                }else{
+                    seleccionMotricidad = true    //Al no seleccionar tablero, se debe cargar por defecto motricidad en la base de datos
+                    motricidadFina(seleccionMotricidad)
                 }
             }
             if (simon){
                 if (colchoneta){
                     completoMF = true
+                }else{
+                    seleccionEquilibrio = true
+                    equilibrio(seleccionEquilibrio)
                 }
                 if (tablero){
                     completoE = true
+                }else{
+                    seleccionMotricidad = true
+                    motricidadFina(seleccionMotricidad)
                 }
             }
             if(completoA && completoV && completoDC && completoM && completoE && completoMF) {
@@ -331,7 +333,17 @@ class PanelInteractivoActivity : AppCompatActivity(), Comunicador {
         }
     }
 
-
+    private fun botonCargar(){
+        val bundle = Bundle()
+        bundle.putString("pacienteDni", pacienteDni)
+        bundle.putString("fechaSesion", fechaSesion)
+        bundle.putString("fechaCompleta", fechaCompleta)
+        botonCargarFragment.arguments = bundle
+        supportFragmentManager.beginTransaction().remove(botonCargarFragment)
+            .replace(R.id.flBotonCargar, botonCargarFragment)
+            .addToBackStack(null).commit()
+        habilitarSig = false
+    }
     private fun memoria(seleccionMemoria:Boolean){
         //Pasar datos a MemoriaFragment()
         val bundle = Bundle()

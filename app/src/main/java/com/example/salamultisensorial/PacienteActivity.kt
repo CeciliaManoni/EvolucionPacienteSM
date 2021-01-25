@@ -114,6 +114,8 @@ class PacienteActivity : AppCompatActivity() {
                 //Cargar los datos del paciente en la base de datos
                 dbReference.child(dni).setValue(Pacientes(nombre, fecha, diagnostico))
                 Toast.makeText(this, "Datos cargados correctamente", Toast.LENGTH_LONG).show()
+                val inicioIntent = Intent(this, PrincipalActivity::class.java)
+                startActivity(inicioIntent)
             }
         }
     }

@@ -58,7 +58,7 @@ class AtencionFragment : Fragment() {
 
     fun capacidadAtencion() {
         dbReference = FirebaseDatabase.getInstance().reference.child("Pacientes")
-            .child(pacienteDni.toString()).child("Capacidad de Atención")
+            .child(pacienteDni.toString()).child("Capacidad de Atención Panel")
 
 
         radioGroupAtencion.setOnCheckedChangeListener { radioGroup, checkedId ->

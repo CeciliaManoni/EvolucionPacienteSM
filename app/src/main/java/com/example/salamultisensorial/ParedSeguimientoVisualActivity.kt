@@ -19,14 +19,14 @@ import java.util.*
 class ParedSeguimientoVisualActivity : AppCompatActivity() {
 
     private lateinit var dbReference: DatabaseReference
-    private lateinit var radioGroupAtencion:RadioGroup
-    private lateinit var radioGroupEquilibrio:RadioGroup
+     private lateinit var observacionesParedET: EditText
 
     private var valorX:String? = ""
     private var fechaSesion:String? = ""
     private var pacienteDni:String? = ""
     private var paciente:String? = ""
     private var profesional: String? = ""
+    private var fechaCompleta: String = ""
     private var anoG = 0
     private var mesG = 0
     private var diaG = 0
@@ -48,6 +48,8 @@ class ParedSeguimientoVisualActivity : AppCompatActivity() {
         paciente = bundle?.getString("paciente")
         pacienteDni = bundle?.getString("pacienteDni")
 
+        observacionesParedET = findViewById(R.id.observacionesParedET)
+
         // Deshabilitar opciones hasta que se seleccione una fecha de sesión
         atencionOpcion1.isEnabled = false
         atencionOpcion2.isEnabled = false
@@ -64,7 +66,7 @@ class ParedSeguimientoVisualActivity : AppCompatActivity() {
         integracionVisomotora3.isEnabled = false
         integracionVisomotora4.isEnabled = false
         integracionVisomotora5.isEnabled = false
-
+        observacionesParedET.isEnabled = false
 
         profesionalSeleccionadoTV.text = "Profesional: $profesional"
         pacienteSeleccionadoTV.text = "Paciente: $paciente"
@@ -121,21 +123,24 @@ class ParedSeguimientoVisualActivity : AppCompatActivity() {
                 integracionVisomotora3.isEnabled = true
                 integracionVisomotora4.isEnabled = true
                 integracionVisomotora5.isEnabled = true
+                observacionesParedET.isEnabled = true
 
-                if(mesG<=9) {
-                    mesBD = "0$mesG"
+                mesBD = if(mesG<=9) {
+                    "0$mesG"
                 }else{
-                    mesBD = "$mesG"
+                    "$mesG"
                 }
 
-                if(diaG<=9){
-                    diaBD = "0$diaG"
+                diaBD = if(diaG<=9){
+                    "0$diaG"
                 }else{
-                    diaBD = "$diaG"
+                    "$diaG"
                 }
 
                 fechaSesion = "$anoG$mesBD$diaBD"
                 valorX = "$diaG/$mesG"
+                fechaCompleta = "$diaG/$mesG/$anoG"
+
             }, ano, mes, dia)
             dpd.show()
         }
@@ -274,6 +279,15 @@ class ParedSeguimientoVisualActivity : AppCompatActivity() {
             mensajeAlerta("Seleccione la fecha de la sesión")
         }else {
             if (completoV && completoA && completoE) {
+
+                if(observacionesParedET.text.isNotEmpty()){
+                    dbReference = FirebaseDatabase.getInstance().reference.child("Pacientes")
+                        .child(pacienteDni.toString()).child("Observaciones Pared")
+                        .child(fechaSesion.toString())
+                    dbReference.child("Observación").setValue(observacionesParedET.text.toString())
+                    dbReference.child("fecha").setValue(fechaCompleta)
+                }
+
                 fechaSesionTV.text = "Fecha de la sesión: "
                 Toast.makeText(this, "Datos cargados correctamente", Toast.LENGTH_LONG).show()
                 completoA = false

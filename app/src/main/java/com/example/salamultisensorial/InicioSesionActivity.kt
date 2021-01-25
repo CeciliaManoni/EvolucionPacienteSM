@@ -26,6 +26,7 @@ class InicioSesionActivity : AppCompatActivity(){
     private var herramientaSeleccionada = ""
     private var profesiones: MutableList<String> = ArrayList()
     private var pacientes: MutableList<Pacientes> = ArrayList()
+    private var paciente: MutableList<String> = ArrayList()
     private var profesionales: MutableList<String> = ArrayList()
 
 
@@ -74,110 +75,111 @@ class InicioSesionActivity : AppCompatActivity(){
         //Búsqueda de las profesiones en la base de datos
         dbReference.child("Profesiones")
             .addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-            }
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (ds in snapshot.children) {
-                        val profesionId = ds.key
-                        profesiones.add(profesionId.toString())
-                    }
-
-                    arrayAdapter(profesiones,profesionesSpinner)
-
-                    //Función acción a ejecutar cuando se selecciona un item del Spinner
-                    profesionesSpinner.onItemSelectedListener = object :
-                        AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(p0: AdapterView<*>?) {
+                override fun onCancelled(error: DatabaseError) {
+                }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (ds in snapshot.children) {
+                            val profesionId = ds.key
+                            profesiones.add(profesionId.toString())
                         }
 
-                        override fun onItemSelected(p0: AdapterView<*>?, p1: View?,
-                                                    p2: Int, p3: Long) {
-                            profesionSeleccionada = profesiones[p2]
-                            spinnerProfesionales()
-                            profesionales.clear()
+                        arrayAdapter(profesiones,profesionesSpinner)
+
+                        //Función acción a ejecutar cuando se selecciona un item del Spinner
+                        profesionesSpinner.onItemSelectedListener = object :
+                            AdapterView.OnItemSelectedListener {
+                            override fun onNothingSelected(p0: AdapterView<*>?) {
+                            }
+
+                            override fun onItemSelected(p0: AdapterView<*>?, p1: View?,
+                                                        p2: Int, p3: Long) {
+                                profesionSeleccionada = profesiones[p2]
+                                spinnerProfesionales()
+                                profesionales.clear()
+                            }
                         }
                     }
                 }
-            }
-        })
+            })
     }
 
     private fun spinnerProfesionales() {
         //Búsqueda de los profesionales registrados en la base de datos
         dbReference.child("Profesiones").child(profesionSeleccionada)
             .addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-            }
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (ds in snapshot.children) {
-                        val profesionalId = ds.child("Nombre").value
-                        profesionales.add(profesionalId.toString())
-                    }
-
-                    arrayAdapter(profesionales,profesionalesSpinner)
-
-                    //Función acción a ejecutar cuando se selecciona un item del Spinner
-                    profesionalesSpinner.onItemSelectedListener = object :
-                        AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(p0: AdapterView<*>?) {
+                override fun onCancelled(error: DatabaseError) {
+                }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (ds in snapshot.children) {
+                            val profesionalId = ds.child("Nombre").value
+                            profesionales.add(profesionalId.toString())
                         }
 
-                        override fun onItemSelected(p0: AdapterView<*>?, p1: View?,
-                                                    p2: Int, p3: Long) {
-                            profesionalSeleccionado = profesionales[p2]
+                        arrayAdapter(profesionales,profesionalesSpinner)
+
+                        //Función acción a ejecutar cuando se selecciona un item del Spinner
+                        profesionalesSpinner.onItemSelectedListener = object :
+                            AdapterView.OnItemSelectedListener {
+                            override fun onNothingSelected(p0: AdapterView<*>?) {
+                            }
+
+                            override fun onItemSelected(p0: AdapterView<*>?, p1: View?,
+                                                        p2: Int, p3: Long) {
+                                profesionalSeleccionado = profesionales[p2]
+                            }
                         }
                     }
                 }
-            }
-        })
+            })
     }
 
     private fun spinnerPacientes() {
         //Búsqueda de los pacientes registrados en la base de datos
         dbReference.child("Pacientes")
             .addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-            }
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (ds in snapshot.children) {
-                        val pacienteId = ds.key
-                        val nombrePaciente:String = ds.child("nombre").value.toString()
-                        pacienteElegido = Pacientes(pacienteId,nombrePaciente)
-                        pacientes.add(pacienteElegido)
-                    }
-
-                    ArrayAdapter<Pacientes>(this@InicioSesionActivity ,
-                        R.layout.spinner_style, pacientes).also{
-                            adapter-> adapter
-                        .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        // Apply the adapter to the spinner
-                        pacientesSpinner.adapter = adapter
-                    }
-
-                    //Función acción a ejecutar cuando se selecciona un item del Spinner
-                    pacientesSpinner.onItemSelectedListener = object :
-                        AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(p0: AdapterView<*>?) {
+                override fun onCancelled(error: DatabaseError) {
+                }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (ds in snapshot.children) {
+                            val pacienteId = ds.key
+                            val nombrePaciente:String = ds.child("nombre").value.toString()
+                            pacienteElegido = Pacientes(pacienteId,nombrePaciente)
+                            pacientes.add(pacienteElegido)
+                            paciente.add(nombrePaciente)
                         }
 
-                        override fun onItemSelected(p0: AdapterView<*>?, p1: View?,
-                                                    p2: Int, p3: Long) {
-                            pacienteSeleccionado = p0?.getItemAtPosition(p2).toString()
+                        ArrayAdapter<Pacientes>(this@InicioSesionActivity ,
+                            R.layout.spinner_style, pacientes).also{
+                                adapter-> adapter
+                            .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                            // Apply the adapter to the spinner
+                            pacientesSpinner.adapter = adapter
+                        }
 
-                            // Búsqueda en el arreglo pacientes del dni del paciente seleccionado
-                            for (i in pacientes) {
-                                if(pacienteSeleccionado == i.nombre){
-                                    pacienteDni = i.dni
+                        //Función acción a ejecutar cuando se selecciona un item del Spinner
+                        pacientesSpinner.onItemSelectedListener = object :
+                            AdapterView.OnItemSelectedListener {
+                            override fun onNothingSelected(p0: AdapterView<*>?) {
+                            }
+
+                            override fun onItemSelected(p0: AdapterView<*>?, p1: View?,
+                                                        p2: Int, p3: Long) {
+                                pacienteSeleccionado = p0?.getItemAtPosition(p2).toString()
+
+                                // Búsqueda en el arreglo pacientes del dni del paciente seleccionado
+                                for (i in pacientes) {
+                                    if(pacienteSeleccionado == i.nombre){
+                                        pacienteDni = i.dni
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        })
+            })
     }
 
     private fun spinnerHerramientas() {
@@ -207,28 +209,29 @@ class InicioSesionActivity : AppCompatActivity(){
     }
 
     fun completarSesion(view: View) {
-            if (herramientaSeleccionada == "Panel Interactivo") {
-                val panelIntent = Intent(this, PanelInteractivoActivity::class.java).apply {
-                    putExtra("profesional", profesionalSeleccionado)
-                    putExtra("paciente", pacienteSeleccionado)
-                    putExtra("pacienteDni", pacienteDni)
-                }
-                startActivity(panelIntent)
+        if (herramientaSeleccionada == "Panel Interactivo") {
+            val panelIntent = Intent(this, PanelInteractivoActivity::class.java).apply {
+                putExtra("profesional", profesionalSeleccionado)
+                putExtra("paciente", pacienteSeleccionado)
+                putExtra("pacienteDni", pacienteDni)
             }
-            if (herramientaSeleccionada == "Pared de Seguimiento Visual") {
-                val paredIntent = Intent(this, ParedSeguimientoVisualActivity::class.java).apply {
-                    putExtra("profesional", profesionalSeleccionado)
-                    putExtra("paciente", pacienteSeleccionado)
-                    putExtra("pacienteDni", pacienteDni)
-                }
-                startActivity(paredIntent)
+            startActivity(panelIntent)
+        }
+        if (herramientaSeleccionada == "Pared de Seguimiento Visual") {
+            val paredIntent = Intent(this, ParedSeguimientoVisualActivity::class.java).apply {
+                putExtra("profesional", profesionalSeleccionado)
+                putExtra("paciente", pacienteSeleccionado)
+                putExtra("pacienteDni", pacienteDni)
             }
+            startActivity(paredIntent)
+        }
     }
 
     fun evolucionPaciente(view: View) {
         val graficosIntent = Intent(this, GraficosActivity::class.java).apply{
             putExtra("paciente",pacienteSeleccionado)
             putExtra("pacienteDni",pacienteDni)
+            putExtra("herramientaSeleccionada", herramientaSeleccionada)
         }
         startActivity(graficosIntent)
     }

@@ -55,7 +55,7 @@ class DiscriminacionColoresFragment : Fragment() {
 
     fun discColores() {
         dbReference = FirebaseDatabase.getInstance().reference.child("Pacientes")
-            .child(pacienteDni.toString()).child("Discriminación de Colores")
+            .child(pacienteDni.toString()).child("Discriminación de Colores Panel")
             .child(fechaSesion.toString())
 
         radioGroupDisc.setOnCheckedChangeListener { radioGroup, checkedId ->

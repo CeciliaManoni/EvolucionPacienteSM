@@ -33,7 +33,6 @@ class EquilibrioFragment : Fragment() {
     private var fechaSesion:String? = ""
     private var pacienteDni:String? = ""
     private var seleccionEquilibrio:String? = ""
-    private var desmarcar:String? = ""
 
     private var completoE = false
 
@@ -58,7 +57,6 @@ class EquilibrioFragment : Fragment() {
         fechaSesion = arguments?.getString("fechaSesion")
         valorX = arguments?.getString("valorX")
         seleccionEquilibrio = arguments?.getString("seleccionEquilibrio")
-        desmarcar = arguments?.getString("desmarcar")
 
         equilibrio()
 
@@ -67,45 +65,42 @@ class EquilibrioFragment : Fragment() {
 
     private fun equilibrio() {
         dbReference = FirebaseDatabase.getInstance().reference.child("Pacientes")
-            .child(pacienteDni.toString()).child("Equilibrio Postural")
+            .child(pacienteDni.toString()).child("Equilibrio Postural Panel")
 
         radioGroupEquilibrio.setOnCheckedChangeListener { radioGroup, checkedId ->
             when (checkedId) {
                 R.id.equilibrioOpcion1 -> {
-                   /* println("desmarcar equi: $desmarcar")
-                    if (desmarcar?.toBoolean()!!) {
-                        desmarcar = "false"
-                        equilibrioOpcion1.isChecked = false
-                    } else {
-                        dbReference.child(fechaSesion.toString()).child("y").setValue(0)
-                        dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
-                    }*/
                     dbReference.child(fechaSesion.toString()).child("y").setValue(0)
                     dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                    dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                     completoE = true
                     comunicador.completeEq(completoE)
                 }
                 R.id.equilibrioOpcion2 -> {
                     dbReference.child(fechaSesion.toString()).child("y").setValue(1)
                     dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                    dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                     completoE = true
                     comunicador.completeEq(completoE)
                 }
                 R.id.equilibrioOpcion3 -> {
                     dbReference.child(fechaSesion.toString()).child("y").setValue(2)
                     dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                    dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                     completoE = true
                     comunicador.completeEq(completoE)
                 }
                 R.id.equilibrioOpcion4 -> {
                     dbReference.child(fechaSesion.toString()).child("y").setValue(3)
                     dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                    dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                     completoE = true
                     comunicador.completeEq(completoE)
                 }
                 R.id.equilibrioOpcion5 -> {
                     dbReference.child(fechaSesion.toString()).child("y").setValue(4)
                     dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                    dbReference.child(fechaSesion.toString()).child("real").setValue("true")
                     completoE = true
                     comunicador.completeEq(completoE)
                 }
@@ -117,22 +112,32 @@ class EquilibrioFragment : Fragment() {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
-
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         var i = 0f
                         valoresGuardadas.clear() //Limpiar datos anteriores
                         for (ds in snapshot.children) {
-                            if (ds.key!! <= fechaSesion.toString()) {
+                            if (ds.key!! < fechaSesion.toString()) {
                                 val valor = ds.child("y").value.toString()
                                 valoresGuardadas.add(valor)
                                 i += 1
                             }
                         }
-                        dbReference.child(fechaSesion.toString()).child("y")
-                            .setValue(valoresGuardadas[i.toInt() - 1])
-                        dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                        if (valoresGuardadas.isNotEmpty()) {
+                            dbReference.child(fechaSesion.toString()).child("y")
+                                .setValue(valoresGuardadas[i.toInt() - 1])
+                            dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                            dbReference.child(fechaSesion.toString()).child("real").setValue("false")
+                        }else{
+                            dbReference.child(fechaSesion.toString()).child("y").setValue(0)
+                            dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                            dbReference.child(fechaSesion.toString()).child("real").setValue("false")
+                        }
                         seleccionEquilibrio = "false"
+                    }else{
+                        dbReference.child(fechaSesion.toString()).child("y").setValue(0)
+                        dbReference.child(fechaSesion.toString()).child("x").setValue(valorX)
+                        dbReference.child(fechaSesion.toString()).child("real").setValue("false")
                     }
                 }
             })
